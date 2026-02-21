@@ -1,0 +1,13 @@
+{
+  "manifest_version": 3,
+  "name": "Voice Agent",
+  "version": "1.0.0",
+  "description": "Control the voice agent from cursor-movement-using-eyes",
+  "permissions": ["nativeMessaging"],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  }
+}
