@@ -1,0 +1,9 @@
+body { font-family: Arial, Helvetica, sans-serif; margin: 0; padding: 12px; width: 300px; }
+.container { text-align: center; }
+h1 { font-size: 16px; margin: 0 0 12px; }
+#status { margin-top: 10px; color: #666; font-size: 13px; }
+button { background: #0b79d0; color: #fff; border: none; padding: 8px 12px; border-radius: 6px; cursor: pointer; }
+button:active { transform: translateY(1px); }
+
+#user-input { width: 100%; padding: 8px; margin-top: 8px; box-sizing: border-box; border-radius: 6px; border: 1px solid #ccc; }
+
