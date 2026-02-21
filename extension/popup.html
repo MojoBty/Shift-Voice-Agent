@@ -3,57 +3,240 @@
 <head>
   <meta charset="utf-8">
   <style>
+    * {
+      box-sizing: border-box;
+    }
     body {
-      width: 220px;
-      padding: 16px;
-      font-family: system-ui, -apple-system, sans-serif;
-      font-size: 14px;
+      width: 320px;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      font-size: 13px;
+      color: #1a1a1a;
+      background: #fafafa;
     }
-    h2 {
-      margin: 0 0 12px 0;
+    .container {
+      padding: 20px;
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid #e5e5e5;
+    }
+    .logo {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .logo svg {
+      width: 20px;
+      height: 20px;
+      fill: white;
+      opacity: 0.95;
+    }
+    .header-text h1 {
+      margin: 0;
       font-size: 16px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: #111;
     }
-    button {
-      width: 100%;
-      padding: 10px 16px;
-      font-size: 14px;
-      cursor: pointer;
-      border: none;
-      border-radius: 6px;
+    .header-text span {
+      font-size: 11px;
+      color: #737373;
       font-weight: 500;
     }
-    #startBtn {
-      background: #1a73e8;
-      color: white;
+    .section {
+      margin-bottom: 16px;
     }
-    #startBtn:hover {
-      background: #1557b0;
+    .section-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: #525252;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 6px;
+    }
+    .tab-preview {
+      background: #fff;
+      border: 1px solid #e5e5e5;
+      border-radius: 8px;
+      padding: 12px;
+      font-size: 12px;
+      color: #525252;
+      line-height: 1.45;
+      max-height: 52px;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      line-clamp: 3;
+      -webkit-box-orient: vertical;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .tab-preview:hover {
+      border-color: #d4d4d4;
+    }
+    .tab-preview.empty {
+      color: #a3a3a3;
+      font-style: italic;
+    }
+    select {
+      width: 100%;
+      padding: 10px 12px;
+      font-size: 13px;
+      border: 1px solid #e5e5e5;
+      border-radius: 8px;
+      background: #fff;
+      color: #1a1a1a;
+      cursor: pointer;
+      transition: border-color 0.15s;
+      -webkit-appearance: none;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23525252' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      padding-right: 32px;
+    }
+    select:hover {
+      border-color: #d4d4d4;
+    }
+    select:focus {
+      outline: none;
+      border-color: #6366f1;
+      box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.15);
+    }
+    .actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 20px;
+    }
+    button {
+      flex: 1;
+      padding: 10px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      border-radius: 8px;
+      transition: all 0.15s ease;
+    }
+    #startBtn {
+      background: linear-gradient(135deg, #6366f1 0%, #5558e3 100%);
+      color: white;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    }
+    #startBtn:hover:not(:disabled) {
+      background: linear-gradient(135deg, #5558e3 0%, #4f46e5 100%);
+      transform: translateY(-0.5px);
+      box-shadow: 0 2px 8px rgba(99, 102, 241, 0.35);
+    }
+    #startBtn:active:not(:disabled) {
+      transform: translateY(0);
+    }
+    #startBtn:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
     }
     #stopBtn {
-      background: #ea4335;
-      color: white;
-      margin-top: 8px;
+      background: #fff;
+      color: #dc2626;
+      border: 1px solid #e5e5e5;
     }
-    #stopBtn:hover {
-      background: #c5221f;
+    #stopBtn:hover:not(:disabled) {
+      background: #fef2f2;
+      border-color: #fecaca;
     }
-    #status {
-      margin-top: 12px;
-      padding: 8px;
-      border-radius: 4px;
+    #stopBtn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+    .status-bar {
+      margin-top: 16px;
+      padding: 10px 12px;
+      border-radius: 8px;
       font-size: 12px;
-      min-height: 20px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: background 0.2s;
     }
-    .status-idle { background: #f1f3f4; color: #5f6368; }
-    .status-running { background: #e6f4ea; color: #137333; }
-    .status-error { background: #fce8e6; color: #c5221f; }
+    .status-bar .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .status-idle {
+      background: #f5f5f5;
+      color: #737373;
+    }
+    .status-idle .dot {
+      background: #a3a3a3;
+    }
+    .status-running {
+      background: #ecfdf5;
+      color: #059669;
+    }
+    .status-running .dot {
+      background: #10b981;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    .status-error {
+      background: #fef2f2;
+      color: #dc2626;
+    }
+    .status-error .dot {
+      background: #ef4444;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
   </style>
 </head>
 <body>
-  <h2>Voice Agent</h2>
-  <button id="startBtn">Start Voice Agent</button>
-  <button id="stopBtn">Stop Voice Agent</button>
-  <div id="status" class="status-idle">Ready</div>
+  <div class="container">
+    <header class="header">
+      <div class="logo">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15v-4l6 3-6 3z"/></svg>
+      </div>
+      <div class="header-text">
+        <h1>Voice Agent</h1>
+        <span>AI voice assistant</span>
+      </div>
+    </header>
+    <section class="section">
+      <div class="section-label">Current Tab</div>
+      <div id="tabPreview" class="tab-preview">Loading…</div>
+    </section>
+    <section class="section">
+      <div class="section-label">Voice</div>
+      <select id="voiceSelect">
+        <option value="">Choose at startup</option>
+        <option value="Bella">Bella</option>
+        <option value="Roger">Roger</option>
+        <option value="Sarah">Sarah</option>
+        <option value="Laura">Laura</option>
+        <option value="Charlie">Charlie</option>
+      </select>
+    </section>
+    <div class="actions">
+      <button id="startBtn">Start</button>
+      <button id="stopBtn">Stop</button>
+    </div>
+    <div id="status" class="status-bar status-idle">
+      <span class="dot"></span>
+      <span>Ready</span>
+    </div>
+  </div>
   <script src="popup.js"></script>
 </body>
 </html>

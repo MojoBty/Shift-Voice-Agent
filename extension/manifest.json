@@ -3,7 +3,7 @@
   "name": "Voice Agent",
   "version": "1.0.0",
   "description": "Control the voice agent from cursor-movement-using-eyes",
-  "permissions": ["nativeMessaging"],
+  "permissions": ["nativeMessaging","storage","activeTab","scripting"],
   "action": {
     "default_popup": "popup.html"
   },

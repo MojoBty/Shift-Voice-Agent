@@ -5,7 +5,7 @@
 set -e
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-NATIVE_HOST="$SCRIPT_DIR/cursor-movement-using-eyes/native_host.py"
+NATIVE_HOST="$SCRIPT_DIR/cursor-movement-using-eyes/native_host_launcher.sh"
 MANIFEST_SRC="$SCRIPT_DIR/cursor-movement-using-eyes/com.cursor.voiceagent.json"
 
 # Chrome native host manifests on macOS
