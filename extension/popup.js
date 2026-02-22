@@ -3,6 +3,7 @@ const MAX_TAB_CONTENT = 50000;
 
 const startBtn = document.getElementById('startBtn');
 const stopBtn = document.getElementById('stopBtn');
+const calibrateBtn = document.getElementById('calibrateBtn');
 const statusEl = document.getElementById('status');
 const voiceSelect = document.getElementById('voiceSelect');
 const tabPreview = document.getElementById('tabPreview');
@@ -95,6 +96,22 @@ startBtn.addEventListener('click', async () => {
     setStatus(err.message || 'Failed to start. Is native host installed?', 'error');
   }
   startBtn.disabled = false;
+});
+
+calibrateBtn.addEventListener('click', async () => {
+  calibrateBtn.disabled = true;
+  setStatus('Opening calibration…', 'idle');
+  try {
+    const response = await sendNativeMessage('calibrate');
+    if (response && response.success) {
+      setStatus('Calibration opened in Terminal. Complete it there.', 'idle');
+    } else {
+      setStatus(response?.error || 'Calibration failed', 'error');
+    }
+  } catch (err) {
+    setStatus(err.message || 'Calibration failed. Is native host installed?', 'error');
+  }
+  calibrateBtn.disabled = false;
 });
 
 stopBtn.addEventListener('click', async () => {

@@ -157,6 +157,14 @@
       opacity: 0.6;
       cursor: not-allowed;
     }
+    #calibrateBtn {
+      background: #fff;
+      color: #6366f1;
+      border: 1px solid #6366f1;
+    }
+    #calibrateBtn:hover:not(:disabled) {
+      background: #f5f3ff;
+    }
     .status-bar {
       margin-top: 16px;
       padding: 10px 12px;
@@ -228,7 +236,8 @@
         <option value="Charlie">Charlie</option>
       </select>
     </section>
-    <div class="actions">
+    <div class="actions actions-primary">
+      <button id="calibrateBtn">Calibrate</button>
       <button id="startBtn">Start</button>
       <button id="stopBtn">Stop</button>
     </div>

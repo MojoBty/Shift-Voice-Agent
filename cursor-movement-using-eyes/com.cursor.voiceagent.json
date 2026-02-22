@@ -1,0 +1,9 @@
+{
+  "name": "com.cursor.voiceagent",
+  "description": "Native host for Voice Agent Chrome extension",
+  "path": "ABSOLUTE_PATH_TO_NATIVE_HOST",
+  "type": "stdio",
+  "allowed_origins": [
+    "chrome-extension://EXTENSION_ID/"
+  ]
+}

@@ -1,0 +1,15 @@
+# Voice agent
+speechrecognition
+pyaudio
+groq
+python-dotenv
+elevenlabs
+pygame
+
+# Eye tracking (from Shift)
+opencv-python
+mediapipe
+pyautogui
+numpy
+sounddevice
+pyobjc-framework-Vision
